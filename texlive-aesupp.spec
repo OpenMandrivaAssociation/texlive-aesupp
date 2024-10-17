@@ -3,7 +3,7 @@ Version:	58253
 Release:	2
 Summary:	Special support for the ae character
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/aesupp
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/aesupp
 License:	gfl gpl3+
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.doc.r%{version}.tar.xz
