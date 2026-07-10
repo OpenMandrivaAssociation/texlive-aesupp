@@ -1,48 +1,27 @@
-Name:		texlive-aesupp
-Version:	58253
-Release:	2
+%global tl_name aesupp
+%global tl_revision 58253
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1
+Release:	%{tl_revision}.1
 Summary:	Special support for the ae character
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/aesupp
+URL:		https://www.ctan.org/tex-archive/fonts/aesupp
 License:	gfl gpl3+
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/aesupp.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package provides special support for the italic 'ae'
-character in some fonts, due to design flaws (in the author's
-opinion) regarding this character. At the moment only the fonts
-TeX Gyre Bonum, TeX Gyre Schola, TeX Gyre Pagella, and the
-Latin Modern fonts are supported. The other fonts in the TeX
-Gyre bundle do not need this support.
+This package provides special support for the italic 'ae' character in
+some fonts, due to design flaws (in the author's opinion) regarding this
+character. At the moment only the fonts TeX Gyre Bonum, TeX Gyre Schola,
+TeX Gyre Pagella, and the Latin Modern fonts are supported. The other
+fonts in the TeX Gyre bundle do not need this support.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/fonts/aesupp
-%{_texmfdistdir}/tex/latex/aesupp
-%{_texmfdistdir}/fonts/type1/public/aesupp
-%{_texmfdistdir}/fonts/tfm/public/aesupp
-%{_texmfdistdir}/fonts/opentype/public/aesupp
-%{_texmfdistdir}/fonts/map/dvips/aesupp
-%{_texmfdistdir}/fonts/enc/dvips/aesupp
-%doc %{_texmfdistdir}/doc/fonts/aesupp
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
